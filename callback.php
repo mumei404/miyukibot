@@ -9,8 +9,7 @@ $message = $jsonObj->{"events"}[0]->{"message"};
 $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
 $type = $message->{"type"};
 $text = $message->{"text"};
-// azure翻訳
-//$translatedText = translator(getToken()->access_token, $text);
+
 // APIからメッセージを取得
 $url = 'https://api.line.me/v2/bot/message/reply';
 $messageData = [
