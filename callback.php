@@ -40,6 +40,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
 curl_setopt($ch, CURLOPT_PROXYPORT, '80');
 curl_setopt($ch, CURLOPT_PROXY, getenv('FIXIE_URL'));
+
 $result = curl_exec($ch);
 error_log($result);
 curl_close($ch);
