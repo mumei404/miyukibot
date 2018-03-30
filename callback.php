@@ -1,16 +1,18 @@
 <?php
+
 $accessToken = getenv('CHANNEL_ACCESS_TOKEN');
+
 // apiから送信されて来たイベントオブジェクトを取得
 $jsonString = file_get_contents('php://input');
 error_log($jsonString);
 $jsonObj = json_decode($jsonString);
+
 // イベントオブジェクトから必要な情報を抽出
 $message = $jsonObj->{"events"}[0]->{"message"};
 $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
 $type = $message->{"type"};
 $text = $message->{"text"};
-// azure翻訳
-//$translatedText = translator(getToken()->access_token, $text);
+
 // APIからメッセージを取得
 $url = 'https://api.line.me/v2/bot/message/reply';
 $messageData = [
@@ -21,7 +23,9 @@ $response = [
     'replyToken' => $replyToken,
     'messages' => [$messageData]
 ];
+
 error_log(json_encode($response));
+
 // curlを用いてメッセージを返信する
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
